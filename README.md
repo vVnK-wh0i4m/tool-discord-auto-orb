@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # 🔮 Discord Auto Orb
 
@@ -29,9 +29,8 @@
 - [Tính năng](#-tính-năng)
 - [Yêu cầu hệ thống](#-yêu-cầu-hệ-thống)
 - [Cài đặt Discord cho từng HĐH](#-cài-đặt-discord-cho-từng-hđh)
-- [Cách sử dụng tool](#-cách-sử-dụng-tool)
+- [Hướng dẫn sử dụng](#-hướng-dẫn-sử-dụng)
 - [Cấu hình](#-cấu-hình)
-- [Hướng dẫn chi tiết từng bước](#-hướng-dẫn-chi-tiết-từng-bước)
 - [FAQ](#-câu-hỏi-thường-gặp)
 - [Bản quyền](#-bản-quyền)
 
@@ -98,114 +97,81 @@
 
 ### 🪟 Windows
 
-#### Cách 1: Discord PTB (Recommended)
+**Tải Discord PTB cho Windows tại đây:** [Tải Discord PTB](https://ptb.discord.com/api/downloads/distributions/app/installers/latest?channel=ptb&platform=win&arch=x64)
 
-```bash
-# Tải Discord PTB cho Windows (x64)
-https://ptb.discord.com/api/downloads/distributions/app/installers/latest?channel=ptb&platform=win&arch=x64
-```
+**Hoặc tải Discord Canary:** [Tải Discord Canary](https://discord.com/api/download/canary?platform=win&arch=x64)
 
-1. **Tải file installer** từ link trên
-2. **Chạy file** `DiscordPTBSetup.exe`
-3. **Đăng nhập** tài khoản Discord
-4. **Mở Developer Tools** → `Ctrl + Shift + I`
-5. **Chọn tab Console**
-
-#### Cách 2: Discord Canary
-
-```bash
-# Tải Discord Canary cho Windows
-https://discord.com/api/download/canary?platform=win&arch=x64
-```
-
-#### Cách 3: Discord Stable
-
-Tải trực tiếp từ: https://discord.com/download
+**Cài đặt:**
+1. Chạy file `DiscordPTBSetup.exe` vừa tải
+2. Làm theo hướng dẫn trên màn hình
+3. Mở Discord PTB lên và đăng nhập tài khoản
 
 ---
 
-### 🐧 Linux
+### 🐧 Linux (Ubuntu/Debian)
 
-#### Ubuntu/Debian
+**Tải Discord PTB cho Linux (Debian/Ubuntu) tại đây:** [Tải Discord PTB](https://discord.com/api/download/ptb?platform=linux&format=deb)
 
+**Cài đặt:**
 ```bash
-# Discord PTB cho Linux (deb)
-https://discord.com/api/download/ptb?platform=linux&format=deb
-
-# Cài đặt
 sudo dpkg -i discord-ptb-*.deb
 sudo apt-get install -f
 ```
 
-#### Arch Linux
-
-```bash
-# Dùng yay hoặc paru
-yay -S discord-ptb
-# hoặc
-paru -S discord-ptb
-```
-
-#### Flatpak
-
-```bash
-flatpak install flathub com.discordapp.DiscordPTB
-```
-
-#### Sau khi cài đặt
-
-1. **Mở Discord PTB**
-2. **Đăng nhập** tài khoản
-3. **Mở Developer Tools** → `Ctrl + Shift + I` (hoặc `F12`)
-4. **Chọn tab Console**
+Mở Discord PTB lên và đăng nhập tài khoản.
 
 ---
 
 ### 🍎 macOS
 
-#### Discord PTB cho macOS
+**Tải Discord PTB cho macOS tại đây:** [Tải Discord PTB](https://discord.com/api/download/ptb?platform=osx)
 
-```bash
-# Tải Discord PTB cho macOS
-https://discord.com/api/download/ptb?platform=osx
-```
-
-1. **Tải file** `.dmg` từ link trên
-2. **Kéo icon** vào thư mục Applications
-3. **Mở Discord PTB**
-4. **Đăng nhập** tài khoản
-5. **Mở Developer Tools** → `Cmd + Option + I`
-6. **Chọn tab Console**
-
-#### Discord Canary cho macOS
-
-```bash
-https://discord.com/api/download/canary?platform=osx
-```
+**Cài đặt:**
+1. Mở file `.dmg` vừa tải
+2. Kéo icon Discord vào thư mục Applications
+3. Mở Discord PTB lên và đăng nhập tài khoản
 
 ---
 
-### 🌐 Discord Web (Tất cả HĐH)
+## 📖 Hướng dẫn sử dụng
 
-1. **Truy cập** https://ptb.discord.com/login
-2. **Đăng nhập** tài khoản
-3. **Mở Developer Tools** → `F12` (hoặc `Ctrl + Shift + I`)
-4. **Chọn tab Console**
+> **LƯU Ý:** Hướng dẫn sử dụng này áp dụng cho TẤT CẢ các HĐH (Windows, Linux, macOS). Bạn chỉ cần mở tab Console và chạy tool theo các bước bên dưới.
 
----
-
-## 📖 Cách sử dụng tool
-
-### Bước 1: Mở Console
+### Bước 1: Mở tab Console
 
 | HĐH | Phím tắt |
 |------|----------|
-| Windows/Linux | `Ctrl + Shift + I` → Console |
-| macOS | `Cmd + Option + I` → Console |
+| Windows | `Ctrl + Shift + I` → chọn tab **Console** |
+| Linux | `Ctrl + Shift + I` hoặc `F12` → chọn tab **Console** |
+| macOS | `Cmd + Option + I` → chọn tab **Console** |
 
-> ⚠️ **Lưu ý:** Nếu nút Console bị gray, gõ `allow pasting` vào Console rồi nhấn Enter.
+### Bước 2: Bật Allow Pasting
 
-### Bước 2: Copy và dán code
+Khi bạn mở Console lần đầu, Discord sẽ hiển thị cảnh báo:
+
+**Ảnh 1 - Cảnh báo "Chờ Đã!" khi mở Console:**
+
+![Console Warning](images/console-warning.png)
+
+> ⚠️ **Đây là cảnh báo của Discord để bảo vệ bạn.** Đừng lo lắng!
+
+**Ảnh 2 - Thông báo "allow pasting":**
+
+![Allow Pasting Warning](images/allow-pasting-warning.png)
+
+**Ảnh 3 - Gõ "allow pasting" vào Console:**
+
+![Allow Pasting Typed](images/allow-pasting-typed.png)
+
+**Làm theo các bước sau:**
+1. Nhìn vào Console, bạn sẽ thấy dòng chữ cảnh báo màu vàng/orange
+2. Gõ tay từ **`allow pasting`** vào ô Console (như ảnh 3)
+3. Nhấn **Enter**
+4. Bây giờ bạn có thể dán code vào Console rồi
+
+> ⚠️ **QUAN TRỌNG:** PHẢI gõ chính xác `allow pasting` rồi nhấn Enter. Nếu KHÔNG gõ thì sẽ KHÔNG dán được code vào Console!
+
+### Bước 3: Dán code và chạy
 
 1. **Tải file** `discord-auto-orb.js` từ repo này
 2. **Mở file** bằng text editor (VS Code, Notepad++,...)
@@ -213,7 +179,7 @@ https://discord.com/api/download/canary?platform=osx
 4. **Dán** vào Console Discord
 5. **Nhấn Enter** để chạy
 
-### Bước 3: Chọn Quest
+### Bước 4: Chọn Quest
 
 Tool sẽ hiện dashboard với danh sách quest có sẵn:
 
@@ -226,7 +192,7 @@ Tool sẽ hiện dashboard với danh sách quest có sẵn:
    - Random delay: Nghỉ ngẫu nhiên giữa các cycle
 4. **Nhấn START** để bắt đầu
 
-### Bước 4: Theo dõi tiến độ
+### Bước 5: Theo dõi tiến độ
 
 Dashboard hiển thị real-time:
 - 🟢 **Đang chạy** - Quest đang được hoàn thành
@@ -262,80 +228,6 @@ const CONFIG = {
 | `autoClaim` | `false` | Tự động nhận thưởng |
 | `playSound` | `false` | Phát âm thanh khi hoàn thành |
 | `randomDelay` | `false` | Nghỉ 1-30 phút ngẫu nhiên |
-
----
-
-## 📖 Hướng dẫn chi tiết từng bước
-
-### Windows - Discord PTB
-
-```
-Bước 1: Tải Discord PTB
-   ↓
-   https://ptb.discord.com/api/downloads/distributions/app/installers/latest?channel=ptb&platform=win&arch=x64
-
-Bước 2: Cài đặt
-   ↓
-   Chạy DiscordPTBSetup.exe → Next → Finish
-
-Bước 3: Đăng nhập
-   ↓
-   Mở Discord PTB → Đăng nhập tài khoản
-
-Bước 4: Mở Console
-   ↓
-   Ctrl + Shift + I → Tab Console
-
-Bước 5: Chạy tool
-   ↓
-   Copy discord-auto-orb.js → Dán vào Console → Enter
-
-Bước 6: Chọn quest & START
-   ↓
-   Tick chọn quest → Bật tùy chọn → Nhấn START
-```
-
-### Linux - Discord PTB
-
-```bash
-# Bước 1: Tải và cài đặt
-wget https://discord.com/api/download/ptb?platform=linux&format=deb
-sudo dpkg -i discord-ptb-*.deb
-sudo apt-get install -f
-
-# Bước 2: Mở Discord PTB
-discord-ptb
-
-# Bước 3: Mở Console
-Ctrl + Shift + I → Tab Console
-
-# Bước 4: Chạy tool
-Copy code → Dán vào Console → Enter
-```
-
-### macOS - Discord PTB
-
-```
-Bước 1: Tải Discord PTB
-   ↓
-   https://discord.com/api/download/ptb?platform=osx
-
-Bước 2: Cài đặt
-   ↓
-   Mở file .dmg → Kéo vào Applications
-
-Bước 3: Mở Discord PTB
-   ↓
-   Vào Applications → Mở Discord PTB
-
-Bước 4: Mở Console
-   ↓
-   Cmd + Option + I → Tab Console
-
-Bước 5: Chạy tool
-   ↓
-   Copy code → Dán vào Console → Enter
-```
 
 ---
 
