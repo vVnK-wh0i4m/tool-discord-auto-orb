@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vVnK - Developer Hub</title>
+    <meta name="description" content="vVnK Developer Hub - Discord Tools, Bots & Automation">
+    <meta name="keywords" content="Discord, Bot, Tools, Automation, Self-Bot">
+    <meta name="author" content="vVnK-wh0i4m">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .profile {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #5865F2, #00ff87, #5865F2);
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5865F2, #00ff87);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            font-weight: bold;
+            box-shadow: 0 10px 40px rgba(88, 101, 242, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .username {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff, #00ff87);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #5865F2;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            background: rgba(88, 101, 242, 0.15);
+            color: #5865F2;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+        }
+
+        .social-btn:hover {
+            background: #5865F2;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #5865F2, #00ff87);
+            border-radius: 2px;
+        }
+
+        .repos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .repo-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .repo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #5865F2, #00ff87);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .repo-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .repo-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(88, 101, 242, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .repo-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .repo-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .repo-desc {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .repo-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+            background: rgba(88, 101, 242, 0.15);
+            color: #5865F2;
+            border: 1px solid rgba(88, 101, 242, 0.2);
+        }
+
+        .tag.green {
+            background: rgba(0, 255, 135, 0.15);
+            color: #00ff87;
+            border-color: rgba(0, 255, 135, 0.2);
+        }
+
+        .tag.orange {
+            background: rgba(255, 165, 0, 0.15);
+            color: #ffa500;
+            border-color: rgba(255, 165, 0, 0.2);
+        }
+
+        .repo-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .repo-link {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .repo-link.primary {
+            background: #5865F2;
+            color: white;
+        }
+
+        .repo-link.primary:hover {
+            background: #4752c4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .repo-link.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #a0a0a0;
+        }
+
+        .repo-link.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .download-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            padding: 50px 30px;
+            text-align: center;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #5865F2, #00ff87);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #5865F2;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(88, 101, 242, 0.3);
+            border-radius: 50%;
+            animation: rise 15s infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .repos {
+                grid-template-columns: 1fr;
+            }
+
+            .username {
+                font-size: 2em;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile">
+            <div class="avatar">V</div>
+            <h1 class="username">vVnK</h1>
+            <p class="tagline">Discord Tools & Automation Developer</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">9+</div>
+                    <div class="stat-label">Repos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">MIT</div>
+                    <div class="stat-label">License</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">Free</div>
+                    <div class="stat-label">All Tools</div>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/vVnK-wh0i4m" class="social-btn" target="_blank">GitHub</a>
+                <a href="https://discord.gg/vVnK" class="social-btn" target="_blank">Discord Server</a>
+                <a href="mailto:wh0i4m000000@outlook.com" class="social-btn">Email</a>
+            </div>
+        </div>
+
+        <!-- Repos Section -->
+        <h2 class="section-title">Projects</h2>
+
+        <div class="repos">
+            <!-- Discord Auto Orb -->
+            <div class="repo-card">
+                <div class="repo-icon">🔮</div>
+                <h3 class="repo-name">Discord Auto Orb</h3>
+                <p class="repo-desc">Tự động hoàn thành Quest trên Discord - Nhận Orb, Avatar Decoration, In-game Rewards miễn phí!</p>
+                <div class="repo-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag green">Quest Auto</span>
+                    <span class="tag orange">v4.10.6</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/tool-discord-auto-orb" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/tool-discord-auto-orb/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Self Bot Cam -->
+            <div class="repo-card">
+                <div class="repo-icon">🎥</div>
+                <h3 class="repo-name">Self Bot Cam</h3>
+                <p class="repo-desc">Self-bot tự động hiển thị webcam trên Discord, gửi ảnh real-time từ camera.</p>
+                <div class="repo-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag green">Self-Bot</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-cam" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-cam/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Self Bot JJK -->
+            <div class="repo-card">
+                <div class="repo-icon">⚔️</div>
+                <h3 class="repo-name">Self Bot JJK Style Beta</h3>
+                <p class="repo-desc">Self-bot phong cách Jujutsu Kaisen - Tự động gửi tin nhắn, reacts, và nhiều hơn nữa.</p>
+                <div class="repo-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag green">Self-Bot</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-JJK-style-beta" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-JJK-style-beta/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Self Bot VVNK -->
+            <div class="repo-card">
+                <div class="repo-icon">🤖</div>
+                <h3 class="repo-name">Self Bot VVNK_QU4N.TH3.D3V</h3>
+                <p class="repo-desc">Self-bot tùy chỉnh mạnh mẽ với nhiều tính năng tự động hóa Discord.</p>
+                <div class="repo-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag green">Self-Bot</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-VVNK_QU4N.TH3.D3V-beta" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-VVNK_QU4N.TH3.D3V-beta/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Tool War Mess -->
+            <div class="repo-card">
+                <div class="repo-icon">💥</div>
+                <h3 class="repo-name">Tool War Mess</h3>
+                <p class="repo-desc">VIVUANAMKY HUB - Tool gửi tin nhắn hàng loạt, war mess trên Discord.</p>
+                <div class="repo-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag orange">War</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/tool-war-mess" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/tool-war-mess/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Bot Server War Just Lonely -->
+            <div class="repo-card">
+                <div class="repo-icon">🎮</div>
+                <h3 class="repo-name">Bot Server War Just Lonely</h3>
+                <p class="repo-desc">Discord.js bot tự động hóa server, war mess, quản lý thành viên.</p>
+                <div class="repo-tags">
+                    <span class="tag">Discord.js</span>
+                    <span class="tag green">Bot</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/bot-server-war-Just-Lonely" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/bot-server-war-Just-Lonely/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Bá Khí Bot -->
+            <div class="repo-card">
+                <div class="repo-icon">🤖</div>
+                <h3 class="repo-name">Bá Khí Bot Server Discord</h3>
+                <p class="repo-desc">AI Chatbot với Groq/OpenAI - Trò chuyện thông minh trên Discord.</p>
+                <div class="repo-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag green">AI Bot</span>
+                    <span class="tag orange">Groq</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/ba-khi-bot-server-discord-by-vVnK-wh0i4m" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/ba-khi-bot-server-discord-by-vVnK-wh0i4m/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Self Bot Harry -->
+            <div class="repo-card">
+                <div class="repo-icon">⚡</div>
+                <h3 class="repo-name">Self Bot Harry</h3>
+                <p class="repo-desc">Self-bot với nhiều tính năng tự động hóa, gửi tin nhắn, quản lý kênh.</p>
+                <div class="repo-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag green">Self-Bot</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-harry" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-harry/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+
+            <!-- Self Bot V3.2 -->
+            <div class="repo-card">
+                <div class="repo-icon">🚀</div>
+                <h3 class="repo-name">Self Bot V3.2</h3>
+                <p class="repo-desc">Phiên bản mới nhất của self-bot với nhiều cải tiến và tính năng mới.</p>
+                <div class="repo-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag green">Self-Bot</span>
+                    <span class="tag orange">v3.2</span>
+                </div>
+                <div class="repo-links">
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-v-3-2" class="repo-link primary" target="_blank">View Repo</a>
+                    <a href="https://github.com/vVnK-wh0i4m/self-bot-v-3-2/archive/refs/heads/main.zip" class="repo-link secondary" target="_blank">Download</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <h2 style="margin-bottom: 20px;">Get Started</h2>
+            <p style="color: #a0a0a0; margin-bottom: 30px;">Tải về và bắt đầu sử dụng ngay!</p>
+            <a href="https://github.com/vVnK-wh0i4m?tab=repositories" class="download-btn" target="_blank">View All Repos</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Made with ❤️ by <a href="https://github.com/vVnK-wh0i4m">vVnK-wh0i4m</a></p>
+            <p style="margin-top: 10px;">© 2026 All Tools Free & Open Source</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particles.appendChild(particle);
+        }
+
+        // Smooth scroll effect
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
